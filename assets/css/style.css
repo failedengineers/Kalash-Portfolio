@@ -1,0 +1,414 @@
+/* 
+  Kalash Gulati Portfolio
+  Theme: Cinematic Developer Portfolio
+  The Dimensional Architect
+*/
+
+:root {
+  /* Tonal Surface Palette */
+  --surface-dim: #0e0e0e;
+  --surface-container-low: #131313;
+  --surface-container-high: #201f1f;
+  --surface-bright: #2c2c2c;
+  --surface-container-highest: #262626;
+
+  /* Primary Light Source (Gradient / Glow) */
+  --primary: #ba9eff;
+  --primary-dim: #8455ef;
+  
+  /* Secondary Accent */
+  --secondary: #699cff;
+  --secondary-container: rgba(105, 156, 255, 0.15);
+
+  /* Text Colors */
+  --on-surface: #ffffff;
+  --on-surface-variant: #adaaaa;
+
+  /* Structural Details */
+  --outline-variant: rgba(73, 72, 71, 0.15); /* Ghost border */
+
+  /* Spacing */
+  --spacing-4: 1.4rem;
+  --spacing-16: 5.5rem;
+  --spacing-24: 8.5rem;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--surface-dim);
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Text Hierarchy */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--on-surface);
+  line-height: 1.2;
+}
+
+.display-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.headline-sub {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: var(--on-surface-variant);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-intro {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-4);
+  color: var(--on-surface-variant);
+}
+
+.body-text {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.label-hud {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Layout Utilities */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Glassmorphism & Tonal Backgrounds */
+.glass-layer {
+  background-color: rgba(19, 19, 19, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ambient-glow {
+  position: absolute;
+  top: -10vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(186,158,255,0.05) 0%, rgba(14,14,14,0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px; /* Slight roundness */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 20px rgba(186, 158, 255, 0);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(132, 85, 239, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(38, 38, 38, 0.3);
+  color: var(--secondary);
+  border: 1px solid var(--outline-variant);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(38, 38, 38, 0.6);
+  transform: translateY(-2px);
+  border-color: rgba(105, 156, 255, 0.3);
+}
+
+.btn-tertiary {
+  background: transparent;
+  color: var(--on-surface-variant);
+  border: none;
+  position: relative;
+}
+
+.btn-tertiary::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 10px;
+  left: 2rem;
+  background-color: var(--on-surface);
+  transition: width 0.3s ease;
+}
+
+.btn-tertiary:hover {
+  color: var(--on-surface);
+}
+
+.btn-tertiary:hover::after {
+  width: calc(100% - 4rem);
+}
+
+.cta-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Sections */
+section {
+  padding: var(--spacing-16) 0;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text-area {
+  z-index: 2;
+}
+
+.hero-image-area {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.portrait-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4/5;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--outline-variant);
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: transform 0.5s ease;
+}
+
+.portrait-wrapper:hover {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.hero-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.portrait-wrapper:hover .hero-portrait {
+  transform: scale(1.02);
+}
+
+/* Specific Projects Section Elements */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-4);
+  margin-top: 3rem;
+}
+
+.project-card {
+  display: block; /* For anchor tags */
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateY(0);
+  cursor: pointer;
+}
+
+.project-card:hover {
+  background-color: var(--surface-container-highest);
+  transform: translateY(-5px);
+  border-color: rgba(186, 158, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* HUD Chips */
+.hud-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.chip {
+  font-size: 0.75rem;
+  background-color: var(--secondary-container);
+  color: var(--secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid var(--outline-variant);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Connect Section */
+.connect-section {
+  background-color: var(--surface-container-low);
+  padding: var(--spacing-16) 0;
+  border-top: 1px solid var(--outline-variant);
+}
+
+.connect-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.site-footer {
+  padding: 2rem 0;
+  background-color: var(--surface-dim);
+  border-top: 1px solid var(--outline-variant);
+  font-size: 0.85rem;
+}
+
+/* Utilities / Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading State for GitHub */
+.loading-text {
+  text-align: center;
+  width: 100%;
+  color: var(--primary-dim);
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+/* Media Queries (Mobile-First responsive approach implicitly, overrides for small screens) */
+@media screen and (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-image-area {
+    justify-content: center;
+    order: -1; /* Image above text on mobile */
+  }
+
+  .cta-group {
+    justify-content: center;
+  }
+  
+  .portrait-wrapper {
+    transform: none;
+    max-width: 300px;
+  }
+  
+  .portrait-wrapper:hover {
+    transform: none;
+  }
+  
+  .btn-tertiary::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .btn-tertiary:hover::after {
+    width: 60%;
+  }
+
+  /* Reduce spacing on mobile */
+  :root {
+    --spacing-16: 4rem;
+    --spacing-24: 5rem;
+  }
+}
